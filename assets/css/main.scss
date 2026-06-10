@@ -20,6 +20,47 @@ search: false
   }
 }
 
+/* Move TOC to left side */
+.toc-left {
+  .sidebar__right {
+    @include breakpoint($large) {
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      inset-inline-end: auto;
+      width: $right-sidebar-width-narrow;
+      margin-inline-start: 0;
+      margin-inline-end: 0;
+      padding-inline-start: 0;
+      padding-inline-end: 1em;
+      z-index: 10;
+
+      &.sticky {
+        position: sticky;
+        float: inline-start;
+      }
+    }
+
+    @include breakpoint($x-large) {
+      width: $right-sidebar-width;
+    }
+  }
+
+  .page {
+    @include breakpoint($large) {
+      float: inline-end;
+      width: calc(100% - #{$right-sidebar-width-narrow});
+      padding-inline-start: $right-sidebar-width-narrow;
+      padding-inline-end: 0;
+    }
+
+    @include breakpoint($x-large) {
+      width: calc(100% - #{$right-sidebar-width});
+      padding-inline-start: $right-sidebar-width;
+    }
+  }
+}
+
 /* Inline dropdown nav */
 .greedy-nav .visible-links {
   overflow: visible;

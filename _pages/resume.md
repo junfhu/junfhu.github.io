@@ -5,12 +5,13 @@ layout: single
 author_profile: false
 toc: true
 toc_label: "Contents"
+toc_sticky: true
+classes: toc-left
 ---
 
 ## Hu Junfeng
 
-**Mobile:** (86) 13916728124  
-**Email:** junfhu@163.com  
+**Email:** hujunfeng@gmail.com  
 **Location:** Shanghai, China  
 
 ---
