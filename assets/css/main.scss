@@ -15,49 +15,46 @@ search: false
 .masthead__inner-wrap,
 #main,
 .breadcrumbs {
-  @include breakpoint($x-large) {
-    max-width: 100%;
-  }
+  max-width: 100%;
+  margin-inline: 0;
+  padding-inline-start: 1em;
 }
 
-/* Move TOC to left side */
+/* Two-column layout: TOC on left, content on right — flexbox, no overlap */
 .toc-left {
-  .sidebar__right {
+  #main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
     @include breakpoint($large) {
-      position: absolute;
-      top: 0;
-      inset-inline-start: 0;
-      inset-inline-end: auto;
-      width: $right-sidebar-width-narrow;
-      margin-inline-start: 0;
-      margin-inline-end: 0;
-      padding-inline-start: 0;
-      padding-inline-end: 1em;
-      z-index: 10;
-
-      &.sticky {
-        position: sticky;
-        float: inline-start;
-      }
+      display: flex;
     }
+  }
 
-    @include breakpoint($x-large) {
-      width: $right-sidebar-width;
+  .sidebar__right {
+    flex: 0 0 160px;
+    order: -1;
+    position: static !important;
+    margin-inline-end: 1.5em;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    width: auto;
+    font-size: 0.85em;
+
+    .toc {
+      position: sticky;
+      top: 2em;
     }
   }
 
   .page {
-    @include breakpoint($large) {
-      float: inline-end;
-      width: calc(100% - #{$right-sidebar-width-narrow});
-      padding-inline-start: $right-sidebar-width-narrow;
-      padding-inline-end: 0;
-    }
-
-    @include breakpoint($x-large) {
-      width: calc(100% - #{$right-sidebar-width});
-      padding-inline-start: $right-sidebar-width;
-    }
+    flex: 1;
+    float: none !important;
+    width: auto !important;
+    min-width: 0;
+    padding-inline-end: 0;
+    padding-inline-start: 0;
   }
 }
 

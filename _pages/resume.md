@@ -11,15 +11,14 @@ classes: toc-left
 
 ## Hu Junfeng
 
-**Email:** hujunfeng@gmail.com  
-**Location:** Shanghai, China  
+**Email:** hujunfeng@gmail.com　　　　　　　　　　　　　　　　　**Location:** Shanghai, China  
 
 ---
 
 ## Education
 
-- **Master (2015)** — Shanghai University of Finance and Economics, Management Engineering
-- **BE (2003)** — Shanghai Jiaotong University, Electronic and Information Engineering
+- **Bachelor (2003)** — Shanghai Jiaotong University, Electronic and Information Engineering
+- **Onjob Master (2015)** — Shanghai University of Finance and Economics, Management Engineering
 
 ---
 
