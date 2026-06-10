@@ -18,7 +18,7 @@ classes: toc-left
 ## Education
 
 - **Bachelor (2003)** — Shanghai Jiaotong University, Electronic and Information Engineering
-- **Onjob Master (2015)** — Shanghai University of Finance and Economics, Management Engineering
+- **Master (Part-time 2015)** — Shanghai University of Finance and Economics, Management Engineering
 
 ---
 
@@ -36,7 +36,7 @@ classes: toc-left
 
 ## Work Experience
 
-### Principle Software Engineer — Dell (EMC) Shanghai *(Dec. 2013 – Present)*
+### Principle System Engineer — Dell (EMC) Shanghai *(Dec. 2013 – Present)*
 
 **PowerStore/XtremIO Engineering Team** *(2017/09 – Now)*
 
