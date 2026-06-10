@@ -22,6 +22,8 @@ search: false
 
 /* Inline dropdown nav */
 .greedy-nav .visible-links {
+  overflow: visible;
+
   li.masthead__menu-item--has-children {
     position: relative;
 
