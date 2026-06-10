@@ -114,11 +114,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Junfeng Hu"
+  name             : "Hu Junfeng"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I'm a tech geek with a passion for exploring and tinkering with the latest innovations. I love diving into emerging technologies—whether it's AI,  or next-gen dev tools—and I'm always excited to see how the next big thing can shape the future."
+  bio              : "Principle Software Engineer at Dell (EMC) with 20+ years experience in storage systems, test automation, and full-stack development."
   location         : "Shanghai, China"
-  email            :
+  email            : "junfhu@163.com"
   # fediverse      : "@you@instance.social"  # used for fediverse:creator meta tag
   links:
     - label: "Email"
