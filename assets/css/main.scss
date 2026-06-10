@@ -7,3 +7,67 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+/* ==========================================================================
+   Custom overrides — full width + dropdown nav
+   ========================================================================== */
+
+.masthead__inner-wrap,
+#main,
+.breadcrumbs {
+  @include breakpoint($x-large) {
+    max-width: 100%;
+  }
+}
+
+/* Inline dropdown nav */
+.greedy-nav .visible-links {
+  li.masthead__menu-item--has-children {
+    position: relative;
+
+    > a::after {
+      content: " \25BE";
+      font-size: 0.7em;
+    }
+
+    &:hover > .masthead__submenu {
+      display: block;
+    }
+  }
+}
+
+.masthead__submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  inset-inline-start: 0;
+  min-width: 180px;
+  margin-top: 5px;
+  padding: 8px 0;
+  background: $background-color;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 30;
+  list-style: none;
+
+  li {
+    display: block;
+
+    a {
+      display: block;
+      padding: 6px 20px;
+      margin: 0;
+      font-size: $type-size-6;
+      white-space: nowrap;
+
+      &:hover {
+        background: $lighter-gray;
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
