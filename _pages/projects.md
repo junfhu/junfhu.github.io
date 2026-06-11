@@ -31,7 +31,7 @@ Step-by-step guide and framework for building advanced bots.
 ## [rbacexample](https://github.com/junfhu/rbacexample)
 {: .no_toc}
 
-Example implementations and patterns for RBA (Rule-Based Automation).
+Example implementations and patterns for RBAC (Role Based Access Control).
 
 [View on GitHub →](https://github.com/junfhu/rbacexample){: .btn .btn--primary}
 
