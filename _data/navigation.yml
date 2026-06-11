@@ -1,11 +1,16 @@
 # main links
 main:
-  - title: "Posts"
-    url: /year-archive/
-  - title: "Categories"
-    url: /categories/
-  - title: "Tags"
-    url: /tags/
+  - title: "My Projects"
+    url: /projects/
+    children:
+      - title: "nanobotui"
+        url: https://github.com/junfhu/nanobotui
+      - title: "UltrabotStepByStep"
+        url: https://github.com/junfhu/UltrabotStepByStep
+      - title: "rbacexample"
+        url: https://github.com/junfhu/rbacexample
+      - title: "githubtrendingvideo"
+        url: https://github.com/junfhu/githubtrendingvideo
   - title: "About"
     url: /about/
     children:

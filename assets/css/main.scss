@@ -111,3 +111,23 @@ search: false
     }
   }
 }
+
+/* Nested (flyout) submenu for third-level items */
+.masthead__submenu-item--has-children {
+  position: relative;
+
+  > a::after {
+    content: " \25B8";
+    font-size: 0.7em;
+  }
+
+  &:hover > .masthead__submenu--nested {
+    display: block;
+  }
+}
+
+.masthead__submenu--nested {
+  top: -9px;           /* align with parent item (offset border + padding) */
+  inset-inline-start: 100%;
+  margin-top: 0;
+}

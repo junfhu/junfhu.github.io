@@ -22,13 +22,34 @@
                 >{{ link.title }}</a>
                 <ul class="masthead__submenu">
                   {%- for child in link.children -%}
-                    <li>
-                      <a
-                        href="{{ child.url | relative_url }}"
-                        {% if child.description %} title="{{ child.description }}"{% endif %}
-                        {% if child.target %} target="{{ child.target }}"{% endif %}
-                      >{{ child.title }}</a>
-                    </li>
+                    {%- if child.children -%}
+                      <li class="masthead__submenu-item--has-children">
+                        <a
+                          href="{{ child.url | relative_url }}"
+                          {% if child.description %} title="{{ child.description }}"{% endif %}
+                          {% if child.target %} target="{{ child.target }}"{% endif %}
+                        >{{ child.title }}</a>
+                        <ul class="masthead__submenu masthead__submenu--nested">
+                          {%- for grandchild in child.children -%}
+                            <li>
+                              <a
+                                href="{{ grandchild.url | relative_url }}"
+                                {% if grandchild.description %} title="{{ grandchild.description }}"{% endif %}
+                                {% if grandchild.target %} target="{{ grandchild.target }}"{% endif %}
+                              >{{ grandchild.title }}</a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </li>
+                    {%- else -%}
+                      <li>
+                        <a
+                          href="{{ child.url | relative_url }}"
+                          {% if child.description %} title="{{ child.description }}"{% endif %}
+                          {% if child.target %} target="{{ child.target }}"{% endif %}
+                        >{{ child.title }}</a>
+                      </li>
+                    {%- endif -%}
                   {%- endfor -%}
                 </ul>
               </li>
