@@ -1,18 +1,6 @@
 # main links
 main:
   - title: "My Projects"
-    url: /projects/
-    children:
-      - title: "nanobotui"
-        url: https://github.com/junfhu/nanobotui
-      - title: "UltrabotStepByStep"
-        url: https://github.com/junfhu/UltrabotStepByStep
-      - title: "rbacexample"
-        url: https://github.com/junfhu/rbacexample
-      - title: "githubtrendingvideo"
-        url: https://github.com/junfhu/githubtrendingvideo
-  - title: "About"
+    url: /
+  - title: "About Me"
     url: /about/
-    children:
-      - title: "Resume"
-        url: /resume/
