@@ -12,6 +12,58 @@ search: false
    Custom overrides — full width + dropdown nav
    ========================================================================== */
 
+/* Swiss-style masthead for non-Swiss pages */
+.swiss-masthead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid #111;
+}
+.swiss-masthead__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 14px clamp(24px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.swiss-masthead__logo {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: #111;
+  text-decoration: none;
+}
+.swiss-masthead__logo:hover { color: #e63946; }
+.swiss-masthead__links {
+  display: flex;
+  gap: 28px;
+}
+.swiss-masthead__links a {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+}
+.swiss-masthead__links a:hover,
+.swiss-masthead__links a.active { color: #e63946; }
+@media (max-width: 720px) {
+  .swiss-masthead__links { gap: 16px; flex-wrap: wrap; }
+  .swiss-masthead__links a { font-size: 11px; }
+}
+
+/* Hide the old theme masthead */
+.masthead {
+  display: none;
+}
+
 .masthead__inner-wrap,
 #main,
 .breadcrumbs {
