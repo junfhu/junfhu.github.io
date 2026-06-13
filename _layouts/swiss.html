@@ -1,0 +1,502 @@
+---
+---
+{%- assign s = site.data.swiss -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ s.hero.name_first }} {{ s.hero.name_last }} — {{ s.hero.subtitle | strip_html }}</title>
+  <meta name="description" content="{{ s.hero.lead | strip_html | strip_newlines | truncate: 160 }}" />
+  <meta name="author" content="{{ site.author.name }}" />
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }} Feed" href="{{ '/feed.xml' | relative_url }}" />
+  <meta property="og:title" content="{{ s.hero.name_first }} {{ s.hero.name_last }}" />
+  <meta property="og:description" content="{{ s.hero.lead | strip_html | strip_newlines | truncate: 200 }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  {% if s.hero.og_image %}<meta property="og:image" content="{{ s.hero.og_image | absolute_url }}" />{% endif %}
+  <style>
+    :root {
+      --black:     #111111;
+      --white:     #ffffff;
+      --off-white: #f4f4f4;
+      --gray:      #999999;
+      --mid-gray:  #666666;
+      --light:     #e5e5e5;
+      --red:       #e63946;
+      --font:      'Helvetica Neue', 'Helvetica', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: var(--black); text-decoration: none; }
+    a:hover { color: var(--red); }
+    h1, h2, h3 { font-weight: 600; text-wrap: balance; }
+    p { text-wrap: pretty; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(16px, 2vw, 32px);
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: clamp(24px, 4vw, 48px);
+    }
+
+    .t-hero   { font-size: clamp(48px, 8vw, 96px); line-height: 0.95; letter-spacing: -0.025em; font-weight: 700; }
+    .t-display { font-size: clamp(36px, 5.5vw, 64px); line-height: 1.0; letter-spacing: -0.02em; font-weight: 700; }
+    .t-lead   { font-size: clamp(16px, 2vw, 20px); line-height: 1.45; color: var(--mid-gray); font-weight: 400; max-width: 48ch; }
+    .t-meta   { font-size: 12px; line-height: 1.4; color: var(--gray); letter-spacing: 0.03em; text-transform: uppercase; }
+
+    .section { padding-block: clamp(80px, 12vw, 140px); }
+    .stack    { display: flex; flex-direction: column; gap: 16px; }
+    .stack-m  { display: flex; flex-direction: column; gap: 24px; }
+
+    .rule { border: none; border-top: 1px solid var(--black); }
+    .rule-light { border: none; border-top: 1px solid var(--light); }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--black);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-block: 14px;
+    }
+    .nav-logo { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; color: var(--mid-gray); }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      border: 2px solid var(--black);
+      font-family: var(--font);
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s, border-color 0.1s;
+      background: var(--black); color: var(--white);
+    }
+    .btn:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+    .btn-outline { background: transparent; color: var(--black); }
+    .btn-outline:hover { background: var(--black); color: var(--white); }
+
+    .card { padding: 28px; background: var(--off-white); }
+    .card-red { background: var(--red); color: var(--white); }
+
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 3px 10px;
+      border: 1px solid var(--black);
+      font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .hero-rule-left { border-left: 8px solid var(--red); padding-left: clamp(24px, 3vw, 40px); }
+    .hero-num {
+      font-size: clamp(60px, 10vw, 120px);
+      line-height: 0.85; font-weight: 700; letter-spacing: -0.03em;
+      color: var(--red);
+    }
+
+    .stat-num  { font-size: clamp(48px, 8vw, 80px); line-height: 0.9; font-weight: 700; letter-spacing: -0.025em; }
+    .stat-label { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+    .stat-photo { background: var(--light); display: flex; align-items: center; justify-content: center; min-height: 160px; }
+    .stat-photo .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray); }
+    .stat-accent { color: var(--red); }
+
+    .skill-card { padding: 24px 0; border-top: 1px solid var(--black); }
+    .skill-card:first-child { border-top: none; }
+    .skill-card h3 { font-size: 20px; margin-bottom: 6px; }
+    .skill-accent { border-top-color: var(--red); }
+
+    .table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .table th, .table td {
+      padding: 14px 0;
+      text-align: left;
+      border-bottom: 1px solid var(--light);
+    }
+    .table th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--gray); }
+    .table td:first-child, .table th:first-child { padding-left: 16px; }
+    .table td:last-child, .table th:last-child { padding-right: 16px; }
+    .table .accent { color: var(--red); font-weight: 600; }
+
+    .proj { padding: 32px 0; border-top: 1px solid var(--black); display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: start; }
+    .proj:first-child { border-top: 3px solid var(--black); }
+    .proj-year { font-size: clamp(28px, 3vw, 36px); font-weight: 700; }
+    .proj-year-accent { color: var(--red); }
+    @media (max-width: 600px) { .proj { grid-template-columns: 1fr; gap: 4px; } }
+
+    .blog-row { padding: 20px 0; border-top: 1px solid var(--light); display: grid; grid-template-columns: 100px 1fr 80px; gap: 24px; align-items: baseline; }
+    .blog-row:first-child { border-top: 2px solid var(--black); }
+    .blog-row h3 { font-size: 17px; font-weight: 500; }
+    .blog-row h3 a { color: var(--black); }
+    .blog-row h3 a:hover { color: var(--red); }
+    .blog-row .blog-tag { text-align: right; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--red); }
+    @media (max-width: 600px) { .blog-row { grid-template-columns: 1fr; gap: 2px; } .blog-row .blog-tag { text-align: left; } }
+
+    .tl { padding: 28px 0; border-top: 1px solid var(--light); display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: start; }
+    .tl:first-child { border-top: 2px solid var(--black); }
+    .tl-date { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--red); padding-top: 2px; }
+    .tl-date-muted { color: var(--mid-gray); }
+    .tl-date-gray { color: var(--gray); }
+    .tl-accent .tl-date { border-top: none; }
+    @media (max-width: 600px) { .tl { grid-template-columns: 1fr; gap: 2px; } }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+    .input, .textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--black);
+      font-family: var(--font);
+      font-size: 15px;
+      background: var(--white);
+      color: var(--black);
+    }
+    .input:focus, .textarea:focus { outline: none; border-color: var(--red); }
+    .textarea { min-height: 120px; resize: vertical; }
+
+    .quote { font-size: clamp(20px, 2.8vw, 28px); line-height: 1.25; font-weight: 700; }
+
+    .foot { padding-block: 40px; border-top: 2px solid var(--black); }
+    .foot .grid { align-items: center; }
+
+    .page { display: none; }
+    .page:target, .page.default { display: block; }
+
+    @media (max-width: 720px) {
+      .nav-links { gap: 16px; flex-wrap: wrap; }
+      .nav-links a { font-size: 11px; }
+    }
+    @media (max-width: 600px) {
+      .tl { grid-template-columns: 1fr; gap: 2px; }
+      .blog-row { grid-template-columns: 1fr; gap: 2px; }
+      .blog-row .blog-tag { text-align: left; }
+      .proj { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <header class="nav">
+    <nav class="grid nav-inner" style="align-items:center;">
+      <a href="#home" class="nav-logo">{{ s.hero.name_first }} {{ s.hero.name_last }}</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#stack">Stack</a>
+        <a href="#work">Work</a>
+        <a href="#blog">Blog</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#about">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HOME Section ===== -->
+  <main id="home" class="page default">
+    <section class="section" style="padding-bottom:0;">
+      <div class="grid">
+        <div class="hero-rule-left" style="grid-column: 1 / span 8;">
+          <p class="t-meta" style="margin-bottom:16px;">{{ s.hero.subtitle }}</p>
+          <h1 class="t-hero">{{ s.hero.name_first }}<br>{{ s.hero.name_last }}</h1>
+          <p class="t-lead" style="margin-top:24px;">{{ s.hero.lead }}</p>
+          <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
+            {% for cta in s.hero.ctas %}
+              {% if cta.type == "outline" %}
+                <a href="{{ cta.href }}" class="btn btn-outline">{{ cta.label }}</a>
+              {% else %}
+                <a href="{{ cta.href }}" class="btn">{{ cta.label }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div style="grid-column: 10 / span 3;">
+          <div class="hero-num" style="margin-top:clamp(40px,6vw,80px);">{{ s.hero.number }}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div style="grid-column: 1 / -1;"><hr class="rule" /></div>
+        {% for stat in s.stats %}
+          {% if stat.type == "photo" %}
+            <div style="grid-column: span 3;">
+              <div class="stat-photo" style="aspect-ratio:3/4;min-height:auto;">
+                <span class="label">{{ stat.label }}</span>
+              </div>
+            </div>
+          {% else %}
+            <div style="grid-column: span 3;">
+              <div class="stat-num{% if stat.accent %} stat-accent{% endif %}">{{ stat.value }}</div>
+              <div class="stat-label">{{ stat.label }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== STACK Section ===== -->
+  <main id="stack" class="page">
+    <section class="section" style="padding-bottom:0;">
+      <div class="grid">
+        <div style="grid-column: 1 / span 1;"><div class="t-meta">{{ s.stack.number }}</div></div>
+        <div style="grid-column: 2 / span 7;">
+          <p class="t-meta" style="margin-bottom:12px;">{{ s.stack.subtitle }}</p>
+          <h2 class="t-display">{{ s.stack.title | newline_to_br }}</h2>
+          <p class="t-lead" style="margin-top:20px;">{{ s.stack.lead }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div style="grid-column: 1 / -1;"><hr class="rule-light" /></div>
+        {% for skill in s.stack.skills %}
+          <div class="skill-card{% if skill.accent %} skill-accent{% endif %}" style="grid-column: span 4;">
+            <div class="t-meta" style="margin-bottom:8px;{% if skill.accent %}color:var(--red);{% endif %}">{{ skill.number }} — {{ skill.category }}</div>
+            <h3>{{ skill.title }}</h3>
+            <p style="color:var(--mid-gray);font-size:14px;">{{ skill.description }}</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+              {% for tag in skill.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="grid">
+        <div style="grid-column: 1 / -1;">
+          <div style="background:var(--off-white);padding:32px;">
+            <div class="t-meta" style="margin-bottom:16px;">{{ s.stack.inventory.title }}</div>
+            <table class="table" style="background:transparent;">
+              <thead><tr>{% for col in s.stack.inventory.columns %}<th>{{ col }}</th>{% endfor %}</tr></thead>
+              <tbody>
+                {% for row in s.stack.inventory.rows %}
+                  <tr>
+                    {% for cell in row %}
+                      <td>{% if forloop.last %}<span class="accent">{{ cell }}</span>{% else %}{{ cell }}{% endif %}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== WORK Section ===== -->
+  <main id="work" class="page">
+    <section class="section" style="padding-bottom:0;">
+      <div class="grid">
+        <div style="grid-column: 1 / span 1;"><div class="t-meta">{{ s.work.number }}</div></div>
+        <div style="grid-column: 2 / span 7;">
+          <p class="t-meta" style="margin-bottom:12px;">{{ s.work.subtitle }}</p>
+          <h2 class="t-display">{{ s.work.title | newline_to_br }}</h2>
+          <p class="t-lead" style="margin-top:20px;">{{ s.work.lead }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid" style="gap:0;">
+        <div style="grid-column: 1 / -1;">
+          {% for proj in s.work.projects %}
+            <div class="proj">
+              <div class="proj-year{% if proj.accent %} proj-year-accent{% endif %}">{{ proj.year }}</div>
+              <div>
+                <h3>{{ proj.title }}</h3>
+                <p style="color:var(--mid-gray);font-size:14px;margin-top:6px;">{{ proj.description }}</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+                  {% for tag in proj.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== BLOG Section ===== -->
+  <main id="blog" class="page">
+    <section class="section" style="padding-bottom:0;">
+      <div class="grid">
+        <div style="grid-column: 1 / span 1;"><div class="t-meta">{{ s.blog.number }}</div></div>
+        <div style="grid-column: 2 / span 7;">
+          <p class="t-meta" style="margin-bottom:12px;">{{ s.blog.subtitle }}</p>
+          <h2 class="t-display">{{ s.blog.title }}</h2>
+          <p class="t-lead" style="margin-top:20px;">{{ s.blog.lead }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div style="grid-column: 1 / -1;">
+          {% assign posts = site.posts %}
+          {% if posts.size > 0 %}
+            {% for post in posts limit:6 %}
+              <div class="blog-row">
+                <div class="t-meta" style="font-size:13px;">{{ post.date | date: "%Y-%m-%d" }}</div>
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                <div class="blog-tag">{{ post.categories | first | default: "General" }}</div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p style="color:var(--gray);">{{ s.blog.empty }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== TIMELINE Section ===== -->
+  <main id="timeline" class="page">
+    <section class="section" style="padding-bottom:0;">
+      <div class="grid">
+        <div style="grid-column: 1 / span 1;"><div class="t-meta">{{ s.timeline.number }}</div></div>
+        <div style="grid-column: 2 / span 7;">
+          <p class="t-meta" style="margin-bottom:12px;">{{ s.timeline.subtitle }}</p>
+          <h2 class="t-display">{{ s.timeline.title }}</h2>
+          <p class="t-lead" style="margin-top:20px;">{{ s.timeline.lead }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div style="grid-column: 1 / -1;">
+          {% for entry in s.timeline.entries %}
+            {% if entry.accent %}
+              <div class="tl tl-accent" style="border-top:2px solid var(--red);">
+                <div class="tl-date">{{ entry.date }}</div>
+                <div>
+                  <h3 style="font-size:22px;font-weight:600;">{{ entry.title }}</h3>
+                  <p style="color:var(--mid-gray);font-size:14px;margin-top:6px;">{{ entry.description }}</p>
+                </div>
+              </div>
+            {% else %}
+              <div class="tl">
+                <div class="tl-date{% if entry.muted %} tl-date-muted{% endif %}{% if entry.grayed %} tl-date-gray{% endif %}">{{ entry.date }}</div>
+                <div>
+                  <h3 style="font-size:22px;font-weight:600;{% if entry.muted %}color:var(--mid-gray);{% endif %}{% if entry.grayed %}color:var(--gray);{% endif %}">{{ entry.title }}</h3>
+                  <p style="color:var(--mid-gray);font-size:14px;margin-top:6px;">{{ entry.description }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="grid">
+        <div class="card-red" style="grid-column: 2 / span 8;padding:40px;">
+          <div class="quote">{{ s.timeline.quote.text }}</div>
+          <p style="margin-top:16px;font-size:14px;">{{ s.timeline.quote.attribution }}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== ABOUT Section ===== -->
+  <main id="about" class="page">
+    <section class="section" style="padding-bottom:0;">
+      <div class="grid">
+        <div style="grid-column: 1 / span 1;"><div class="t-meta">{{ s.about.number }}</div></div>
+        <div style="grid-column: 2 / span 7;">
+          <p class="t-meta" style="margin-bottom:12px;">{{ s.about.subtitle }}</p>
+          <h2 class="t-display">{{ s.about.title }}</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div style="grid-column: 1 / span 7;">
+          <p class="t-lead" style="max-width:60ch;">{{ s.about.lead }}</p>
+          {% for p in s.about.paragraphs %}
+            <p style="color:var(--mid-gray);font-size:15px;margin-top:16px;max-width:60ch;">{{ p }}</p>
+          {% endfor %}
+          <div class="card-red" style="margin-top:32px;padding:32px;">
+            <div style="font-size:17px;font-weight:600;">{{ s.about.cta | markdownify }}</div>
+          </div>
+        </div>
+        <div style="grid-column: 9 / span 4;">
+          <div class="t-meta" style="margin-bottom:16px;">Contact details</div>
+          <div class="card" style="padding:28px;">
+            <div class="stack-m">
+              {% for detail in s.about.details %}
+                <div>
+                  <div class="t-meta" style="margin-bottom:4px;">{{ detail.label }}</div>
+                  <div style="font-weight:600;font-size:16px;">{{ detail.value }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div class="grid">
+      <div style="grid-column: 1 / span 6;" class="t-meta">
+        {{ s.footer.copyright }} &middot; {{ site.time | date: "%Y" }} &middot; {{ s.footer.tagline }}
+      </div>
+      <div style="grid-column: 7 / span 6;text-align:right;" class="t-meta">
+        <a href="#home" style="color:var(--mid-gray);">Home</a> &nbsp;&middot;&nbsp;
+        <a href="#stack" style="color:var(--mid-gray);">Stack</a> &nbsp;&middot;&nbsp;
+        <a href="#work" style="color:var(--mid-gray);">Work</a> &nbsp;&middot;&nbsp;
+        <a href="#blog" style="color:var(--mid-gray);">Blog</a> &nbsp;&middot;&nbsp;
+        <a href="#timeline" style="color:var(--mid-gray);">Timeline</a> &nbsp;&middot;&nbsp;
+        <a href="#about" style="color:var(--mid-gray);">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Hash-based navigation -->
+  <script>
+    (function() {
+      var nav = document.querySelector('.nav-links');
+      var links = nav.querySelectorAll('a');
+      function update() {
+        var hash = location.hash || '#home';
+        links.forEach(function(a) {
+          if (a.getAttribute('href') === hash) a.classList.add('active');
+          else a.classList.remove('active');
+        });
+      }
+      window.addEventListener('hashchange', update);
+      update();
+      if (!location.hash) document.getElementById('home').classList.add('default');
+    })();
+  </script>
+
+</body>
+</html>

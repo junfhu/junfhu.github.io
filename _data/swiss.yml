@@ -1,0 +1,192 @@
+# Swiss-style homepage content for Junfeng Hu
+# Edit this file to update the homepage sections
+
+hero:
+  subtitle: "Principle System Engineer & AI enthusiast"
+  name_first: "Junfeng"
+  name_last: "Hu"
+  lead: |
+    Over 20 years in industry-leading companies — from storage systems and
+    customer support to full-stack engineering and AI. I build tools that
+    solve real problems, debug root causes, and ship complete products.
+  ctas:
+    - label: "View capabilities"
+      href: "#stack"
+      type: outline
+    - label: "About me"
+      href: "#about"
+      type: solid
+  number: "01"
+
+stats:
+  - value: "20+"
+    label: "years engineering experience"
+  - value: "5"
+    label: "domains: storage, full-stack, AI, support, testing"
+  - value: "24/7"
+    label: "production-first mindset, on-call ready"
+    accent: true
+  - type: photo
+    label: "Portrait"
+
+stack:
+  number: "02"
+  subtitle: "Capabilities"
+  title: "AI & full-stack engineering"
+  lead: |
+    I work across AI integration, full-stack development, and storage
+    infrastructure. Grounded in 20+ years of production experience.
+  skills:
+    - number: "01"
+      category: "Core"
+      title: "AI & LLM Integration"
+      description: |
+        Claude, GPT-4, DeepSeek, Gemini. Prompt engineering, RAG pipelines
+        with hybrid search, agent architectures with tool use and shared memory.
+      tags: ["Prompt Eng", "RAG", "Agents", "Model Routing"]
+    - number: "02"
+      category: "Architecture"
+      title: "Full-Stack Development"
+      description: |
+        Angular, Node.js, Python. Internal tools and web applications from
+        database schema to deployment. TypeScript, Postgres, REST APIs.
+      tags: ["Angular", "Node.js", "Python", "Postgres"]
+    - number: "03"
+      category: "Infra"
+      title: "Storage & Infrastructure"
+      description: |
+        Dell PowerStore, XtremIO, Linux, Docker. Deep expertise in
+        storage systems, virtualization, and production troubleshooting.
+      tags: ["Storage", "Linux", "Docker"]
+  inventory:
+    title: "Technical inventory"
+    columns: ["Category", "Tools & Frameworks", "Proficiency"]
+    rows:
+      - ["LLMs", "Claude API, OpenAI, DeepSeek, Gemini, Ollama", "Advanced"]
+      - ["AI Tools", "Claude Code, Devin, Codex, Cursor", "Expert"]
+      - ["Frontend", "Angular, TypeScript, Node.js, HTML/CSS", "Advanced"]
+      - ["Backend", "Python, FastAPI, Postgres, REST APIs", "Advanced"]
+      - ["Infra", "Docker, Linux, VMware, OpenStack", "Expert"]
+      - ["Storage", "PowerStore, XtremIO, NAS, SAN, data protection", "Expert"]
+
+work:
+  number: "03"
+  subtitle: "Selected projects"
+  title: "Work that shipped"
+  lead: |
+    Production systems, internal tools, AI experiments, and open-source
+    contributions. Each one deployed, each one used by real people.
+  projects:
+    - year: "2026"
+      title: "nanobotui — AI Bot Interaction UI"
+      accent: true
+      description: |
+        A UI for interacting with AI bots and agents. Built for exploring
+        multi-model chat, tool use, and agent orchestration patterns.
+      tags: ["AI", "TypeScript", "Agents"]
+    - year: "2025"
+      title: "RAG System with LangChain & ChromaDB"
+      description: |
+        Built a Retrieval-Augmented Generation pipeline with hybrid search
+        (embeddings + BM25). Explored chunking strategies and evaluation
+        with RAGAS. Stack: Python, LangChain, ChromaDB.
+      tags: ["RAG", "Python", "LangChain", "ChromaDB"]
+    - year: "2024"
+      title: "deepseekwebproxy — API Proxy"
+      description: |
+        Web proxy for DeepSeek API access, enabling streamlined integration
+        with local development workflows and AI toolchains.
+      tags: ["Proxy", "DeepSeek", "API"]
+    - year: "2024"
+      title: "githubtrendingvideo — Video Generator"
+      description: |
+        Tool for generating videos from trending GitHub repositories.
+        Automates content discovery and video production from open-source
+        project data.
+      tags: ["Automation", "Video", "GitHub"]
+
+blog:
+  number: "04"
+  subtitle: "Writing"
+  title: "Blog"
+  lead: |
+    Technical deep dives, how-tos, and things I learn along the way.
+    Production scars and real experience — not tutorial fluff.
+  empty: "No posts yet. Check back soon."
+
+timeline:
+  number: "05"
+  subtitle: "Career"
+  title: "Timeline"
+  lead: |
+    Storage support → testing → full-stack → AI. Each chapter built on
+    the last. The thread is always the same: solve real problems for real users.
+  entries:
+    - date: "2013 — now"
+      title: "Principle System Engineer — Dell (EMC) Shanghai"
+      description: |
+        PowerStore/XtremIO Engineering: accept escalations, resolve critical
+        customer issues, perform beta tests. Individually developed Powertriage
+        (WebUI known-issue diagnostic platform). 3× Dell Game Changer,
+        3× CS XtremIO MVP, 1× CS Innovation Hero awards.
+      accent: true
+    - date: "2012 — 2013"
+      title: "Senior Tester — Cisco CRDC, VCBU"
+      description: |
+        Testing features for VCBU Conductor: installation, service directory,
+        data analytics. Test case design, testbed setup, automation, and
+        supporting the North America AS team.
+    - date: "2006 — 2012"
+      title: "Test Leader/Manager — Genband Shanghai, MG"
+      description: |
+        Led and managed the Media Gateway test team. Negotiated project
+        plans with North America office, enhanced regression coverage
+        through automation. 2009 "Customer Satisfied Award" recipient.
+    - date: "2004 — 2006"
+      title: "Tester — Shanghai Net-2Com, Softswitch"
+      description: |
+        Core testing responsibilities including test planning, case design
+        and execution, environment setup, and cross-team coordination.
+    - date: "2003 — 2004"
+      title: "Tester — UP Technologies (China), Softswitch"
+      description: |
+        Core testing responsibilities, recognized with company awards
+        for outstanding performance.
+  quote:
+    text: |
+      Customer support taught me to listen before building.
+      Full-stack engineering taught me to ship end-to-end.
+      AI engineering taught me to amplify human capability.
+    attribution: "The thread: solve real problems, not imaginary ones."
+
+about:
+  number: "06"
+  subtitle: "About"
+  title: "About me"
+  lead: |
+    Hi, I'm Junfeng Hu — a tech geek based in Shanghai with a passion
+    for exploring and tinkering with the latest innovations.
+  paragraphs:
+    - |
+      I love diving into emerging technologies — whether it's AI, cloud-native
+      infrastructure, or next-gen developer tools — and I'm always excited to
+      see how the next big thing can shape the future.
+    - |
+      This blog is where I share technical tips, project write-ups, and things
+      I learn along the way.
+  details:
+    - label: "Email"
+      value: "hujunfeng@gmail.com"
+    - label: "GitHub"
+      value: "github.com/junfhu"
+    - label: "Location"
+      value: "Shanghai, China / Remote"
+    - label: "Resume"
+      value: '<a href="https://junfhu.github.io/resume/" style="color:var(--black);">junfhu.github.io/resume/</a>'
+  cta: |
+    Currently looking for new opportunities in Shanghai (remote or onsite).
+    <a href="/resume/" style="color:inherit;text-decoration:underline;">View my resume →</a>
+
+footer:
+  copyright: "Junfeng Hu"
+  tagline: "Principle System Engineer"
